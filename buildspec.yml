@@ -7,7 +7,7 @@ phases:
   post_build:
     commands:
       - mvn package
-      -       - aws cloudformation package --template-file sam.yaml --s3-bucket stephen-devops --output-template-file sam-output.yaml
+      - aws cloudformation package --template-file sam.yaml --s3-bucket stephen-devops --output-template-file sam-output.yaml
 
 artifacts:
   files:
