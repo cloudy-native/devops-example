@@ -5,16 +5,20 @@ import static java.util.stream.Collectors.toList;
 
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
+import java.util.function.Supplier;
 import java.util.stream.Stream;
 
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @RestController
-public class PersonalizationService {
+@EnableWebMvc
+public class PersonalizationController {
 	/**
 	 * Handy trivial test endpoint
 	 * 
@@ -22,8 +26,8 @@ public class PersonalizationService {
 	 * @return
 	 */
 	@RequestMapping("/hello")
-	public String hello(@RequestParam(value = "name", defaultValue = "there") String name) {
-		return "hello " + name;
+	public String hello(@RequestParam(value = "name") Optional<String> name) {
+		return "hello " + name.orElse("there");
 	}
 
 	/**
@@ -53,15 +57,17 @@ public class PersonalizationService {
 	}
 
 	private String randomString(final Random random) {
-		return Stream.generate(() -> randomFragment(random, 12)).limit(3).collect(joining("-"));
+		final Supplier<String> s = () -> new BigInteger(range(random, 5, 20), random).toString(Character.MAX_RADIX);
+
+		return Stream.generate(s).limit(range(random, 1, 5)).collect(joining("-"));
 	}
 
-	private String randomFragment(final Random random, int numBits) {
-		return new BigInteger(numBits, random).toString(Character.MAX_RADIX);
-	}
-
-	private long asSeed(final String text) {
+	private static long asSeed(final String text) {
 		return new BigInteger(text.getBytes()).longValue();
+	}
+
+	private static int range(final Random random, final int from, final int to) {
+		return from + random.nextInt(to - from);
 	}
 
 }
