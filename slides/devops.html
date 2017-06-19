@@ -40,9 +40,11 @@
 		<div class="slides">
 			<section>
 				<h1>DevOps</h1>
-				<h3>Is Dev.</h3>
-				<h3>Also Ops.</h3>
-				<h3>Let's explore</h3>
+				<h3>Is Dev</h3>
+				<h3>Also Ops</h3>
+				<h3>Let's explain</h3>
+				<br/>
+				<h4><code>stephen@harrison.org</code></h4>
 			</section>
 
 			<section>
@@ -89,17 +91,17 @@
 			</section>
 
 			<section>
-				<h2>More Challenges</h2>
+				<h2>Challenges, 2</h2>
 				<ul>
-					<li>&ldquo;Hand-off&rdquo;</li>
+					<li>Hand-off</li>
 					<ul>
 						<li>Lead &rarr; Developer &rarr; Tester &rarr; Release Engineer &rarr; Operations</li>
 						<li>Leaves gaps</li>
 					</ul>
 					<li>Does not require any one person to have the whole thing in their head</li>
 					<ul>
-						<li>Think solving a crossword by committee</li>
-						<li>And another example that's better than that</li>
+						<li>Think solving a crossword by weekly conference call</li>
+						<li>Or another example that's better than that</li>
 					</ul>
 				</ul>
 			</section>
@@ -118,7 +120,7 @@
 			</section>
 
 			<section>
-				<h2>Modern Thinking/2</h2>
+				<h2>Modern Thinking, 2</h2>
 				<ul>
 					<li>Component approach decouples services</li>
 					<ul>
@@ -130,7 +132,7 @@
 			</section>
 
 			<section>
-				<h2>Modern Thinking/3</h2>
+				<h2>Modern Thinking, 3</h2>
 				<ul>
 					<li>Platform-as-a-Service (PaaS)</li>
 					<ul>
@@ -142,9 +144,9 @@
 			</section>
 
 			<section>
-				<h2>A Concrete Approach</h2>
+				<h2>A Concrete Example</h2>
 				<ul>
-					<li>Look at an example microservice</li>
+					<li>Let's look at an example microservice</li>
 					<ul>
 						<li>Delivers personalization data from Data Science</li>
 						<li>RESTful API with JSON</li>
@@ -159,7 +161,7 @@
 			</section>
 
 			<section>
-				<h2>Recommendation API</h2>
+				<h2>Brand Recommendation API</h2>
 				<table>
 					<thead>
 						<tr>
@@ -172,7 +174,7 @@
 								<td>For a given <code><mark>brandId</mark></code> show similar brand ids</td>
 							</tr>
 							<tr>
-								<td><small><code>/member/<mark>{memberId}</mark>/brands</code></small></td>
+								<td><small><code>/brand/<mark>{memberId}</mark>/recommendation</code></small></td>
 								<td>For a given <code><mark>memberId</mark></code> show recommended brand ids</td>
 							</tr>
 						</tbody>
@@ -200,7 +202,7 @@
 							<tr>
 								<td>API</td>
 								<td>HTTP</td>
-								<td> to direct traffic</td>
+								<td>Dispatcher directs traffic</td>
 							</tr>
 							<tr>
 								<td>Dispatcher</td>
@@ -215,29 +217,58 @@
 							<tr>
 								<td>Service</td>
 								<td>Java types</td>
-								<td>Data store</td>
+								<td>Java code and data store</td>
 							</tr>
 						</tbody>
 				</table>
 			</section>
 
 			<section>
-				<h2>API Gateway is</h2>
+				<h2>API Gateway</h2>
 				<ul>
-					<li>Managed infrastructure</li>
+					<li>Is managed infrastructure</li>
+					<li>Can do SSL termination</li>
+					<li>Can implement security</li>
+					<li>Can do throttling</li>
 				</ul>
+				<div style="height:500px">
+					<img src="./images/api-gateway.svg">
+				</div>
 			</section>
 
 			<section>
-				<h2>Dispatcher is</h2>
+				<h2>Dispatcher</h2>
+				<ul>
+					<li>Is a runtime like Spring</li>
+					<li>Binds URL paths to code</li>
+					<li>Deals with declared URL parameters</li>
+				</ul>
+				<div style="height:500px">
+					<img src="./images/dispatcher.svg">
+				</div>
 			</section>
 
 			<section>
-				<h2>Controller is</h2>
+				<h2>Controller</h2>
+				<ul>
+					<li>Accepts dispatched request</li>
+					<li>Translates parameters to native values</li>
+					<li>Calls service</li>
+				</ul>
+				<div style="height:500px">
+					<img src="./images/controller.svg">
+				</div>
 			</section>
 
 			<section>
-				<h2>Service is</h2>
+				<h2>Service</h2>
+				<ul>
+					<li>Coordinates database calls</li>
+					<li>Manages transactions</li>
+				</ul>
+				<div style="height:500px">
+					<img src="./images/service.svg">
+				</div>
 			</section>
 
 			<section>
@@ -247,9 +278,76 @@
 					<li>Make a build</li>
 					<li>Test the code</li>
 					<li>Define stack</li>
-					<li>Define deployment</li>
+					<li>Deploy the stack</li>
 					<li>Test the stack</li>
 				</ul>
+			</section>
+
+			<section>
+				<h2>Show me the Code</h2>
+				<p><small><code>https://github.com/NogbadTheBad/devops-example</code></small></p>
+				<ul>
+					<li>Code for Dispatcher (Spring Java)</li>
+					<li>Code for Controller (Spring MVC, Java)</li>
+					<li>Code for Service (Java)</li>
+					<li>Infrastructure-as-code stack (Cloudformation YAML)</li>
+					<li>These slides (hint: open <code>devops.html</code> and press spacebar)</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Java Code Walkthrough</h2>
+				<h4>In GitHub</h4>
+			</section>
+
+			<section>
+				<h2>Amazon Web Services (AWS) Review</h2>
+				<ul>
+					<li><em>API Gateway</em> is exactly what you think it is</li>
+					<li><em>AWS Lambda</em> is a fragment of code</li>
+					<ul>
+						<li>Integrates with API Gateway</li>
+						<li>Can run at huge scale</li>
+					</ul>
+					<li><em>AWS CloudFormation</em> defines infrastructure-as-code</li>
+					<ul>
+						<li>More on this later</li>
+					</ul>
+				</ul>
+			</section>
+
+			<section>
+				<h2>The Stack in AWS</h2>
+				<ul>
+					<li>Fully <em>serverless</em> meaning no classic server instances</li>
+					<li>But still runs on computers we don't own and can't see</li>
+				</ul>
+				<div style="height:500px">
+					<img src="./images/stack.svg">
+				</div>
+			</section>
+
+			<section>
+				<h2>Review Stack in AWS Console</h2>
+			</section>
+			<section>
+				<h2>Codepipeline + Codebuild</h2>
+				<ul>
+					<li>GitHub integration</li>
+					<li>...</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Kick off a build</h2>
+			</section>
+
+			<section>
+				<h2>Gitflow?</h2>
+			</section>
+
+			<section>
+				<h2>Review</h2>
 			</section>
 		</div>
 	</div>
