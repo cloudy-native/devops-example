@@ -9,5 +9,5 @@ phases:
     - aws cloudformation package --template-file sam.yaml --s3-bucket stephen-devops --output-template-file sam-output.yaml
 artifacts:
   files:
-  - target/devops-example-0.0.1-SNAPSHOT.jar
+  - target/devops-example.jar
   - sam-output.yaml

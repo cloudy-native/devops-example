@@ -7,7 +7,7 @@ Resources:
     Properties:
       Handler: org.harrison.devops.LambdaHandler::handleRequest
       Runtime: java8
-      CodeUri: target/devops-example-0.0.1-SNAPSHOT.jar
+      CodeUri: target/devops-example.jar
       Policies: AWSLambdaBasicExecutionRole
       MemorySize: 512
       Timeout: 20
