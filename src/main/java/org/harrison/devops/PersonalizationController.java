@@ -41,7 +41,7 @@ public class PersonalizationController {
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping("/member/{memberId}/brands")
+	@RequestMapping("/brand/{memberId}/recommendation")
 	public List<String> memberRecommendedBrands(@PathVariable String memberId) {
 		return service.memberRecommendedBrands(memberId);
 	}

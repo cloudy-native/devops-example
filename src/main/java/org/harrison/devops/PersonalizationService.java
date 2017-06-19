@@ -20,9 +20,7 @@ public class PersonalizationService {
 	 * @return
 	 */
 	public List<String> brandSimilar(final String brandId) {
-		final Random random = new Random(asSeed("brand" + brandId));
-
-		return Stream.generate(() -> randomString(random)).limit(random.nextInt(5)).collect(toList());
+		return randomString(asSeed("brand" + brandId), 1, 5);
 	}
 
 	/**
@@ -32,13 +30,18 @@ public class PersonalizationService {
 	 * @return
 	 */
 	public List<String> memberRecommendedBrands(final String memberId) {
-		final Random random = new Random(asSeed("member" + memberId));
-		final Supplier<String> randomString = () -> randomString(random);
-
-		return Stream.generate(randomString).limit(random.nextInt(10)).collect(toList());
+		return randomString(asSeed("member" + memberId), 2, 10);
 	}
 
-	private String randomString(final Random random) {
+	private static List<String> randomString(long seed, int min, int max) {
+		final Random random = new Random(seed);
+		final int limit = min + random.nextInt(max - min);
+		final Supplier<String> fragment = () -> randomString(random);
+
+		return Stream.generate(fragment).limit(limit).collect(toList());
+	}
+
+	private static String randomString(final Random random) {
 		final Supplier<String> fragment = () -> new BigInteger(30, random).toString(Character.MAX_RADIX);
 
 		return Stream.generate(fragment).limit(4).collect(joining("-"));
