@@ -52,22 +52,18 @@ public class PersonalizationController {
 	@RequestMapping("/member/{memberId}/brands")
 	public List<String> memberRecommendedBrands(@PathVariable String memberId) {
 		final Random random = new Random(asSeed("member" + memberId));
+		final Supplier<String> randomString = () -> randomString(random);
 
-		return Stream.generate(() -> randomString(random)).limit(random.nextInt(10)).collect(toList());
+		return Stream.generate(randomString).limit(random.nextInt(10)).collect(toList());
 	}
 
 	private String randomString(final Random random) {
-		final Supplier<String> s = () -> new BigInteger(range(random, 5, 20), random).toString(Character.MAX_RADIX);
+		final Supplier<String> fragment = () -> new BigInteger(30, random).toString(Character.MAX_RADIX);
 
-		return Stream.generate(s).limit(range(random, 1, 5)).collect(joining("-"));
+		return Stream.generate(fragment).limit(4).collect(joining("-"));
 	}
 
 	private static long asSeed(final String text) {
 		return new BigInteger(text.getBytes()).longValue();
 	}
-
-	private static int range(final Random random, final int from, final int to) {
-		return from + random.nextInt(to - from);
-	}
-
 }
