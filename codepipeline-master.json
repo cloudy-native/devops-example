@@ -1,0 +1,114 @@
+{
+    "pipeline": {
+        "roleArn": "arn:aws:iam::607477397669:role/AWS-CodePipeline-Service", 
+        "stages": [
+            {
+                "name": "Source", 
+                "actions": [
+                    {
+                        "inputArtifacts": [], 
+                        "name": "Source", 
+                        "actionTypeId": {
+                            "category": "Source", 
+                            "owner": "ThirdParty", 
+                            "version": "1", 
+                            "provider": "GitHub"
+                        }, 
+                        "outputArtifacts": [
+                            {
+                                "name": "Source"
+                            }
+                        ], 
+                        "configuration": {
+                            "Owner": "NogbadTheBad", 
+                            "Repo": "devops-example", 
+                            "Branch": "master", 
+                            "OAuthToken": "nope"
+                        }, 
+                        "runOrder": 1
+                    }
+                ]
+            }, 
+            {
+                "name": "Build", 
+                "actions": [
+                    {
+                        "inputArtifacts": [
+                            {
+                                "name": "Source"
+                            }
+                        ], 
+                        "name": "CodeBuild", 
+                        "actionTypeId": {
+                            "category": "Build", 
+                            "owner": "AWS", 
+                            "version": "1", 
+                            "provider": "CodeBuild"
+                        }, 
+                        "outputArtifacts": [
+                            {
+                                "name": "Build"
+                            }
+                        ], 
+                        "configuration": {
+                            "ProjectName": "devops-example"
+                        }, 
+                        "runOrder": 1
+                    }
+                ]
+            }, 
+            {
+                "name": "Deploy", 
+                "actions": [
+                    {
+                        "inputArtifacts": [
+                            {
+                                "name": "Build"
+                            }
+                        ], 
+                        "name": "CloudFormation", 
+                        "actionTypeId": {
+                            "category": "Deploy", 
+                            "owner": "AWS", 
+                            "version": "1", 
+                            "provider": "CloudFormation"
+                        }, 
+                        "outputArtifacts": [], 
+                        "configuration": {
+                            "ActionMode": "CHANGE_SET_REPLACE", 
+                            "ChangeSetName": "devops-master-change-set", 
+                            "RoleArn": "arn:aws:iam::607477397669:role/CodePipelineDeployRole", 
+                            "Capabilities": "CAPABILITY_IAM", 
+                            "StackName": "devops-master", 
+                            "TemplatePath": "Build::sam-output.yaml"
+                        }, 
+                        "runOrder": 1
+                    }, 
+                    {
+                        "inputArtifacts": [], 
+                        "name": "DeployChangeSet", 
+                        "actionTypeId": {
+                            "category": "Deploy", 
+                            "owner": "AWS", 
+                            "version": "1", 
+                            "provider": "CloudFormation"
+                        }, 
+                        "outputArtifacts": [], 
+                        "configuration": {
+                            "StackName": "devops-master", 
+                            "ActionMode": "CHANGE_SET_EXECUTE", 
+                            "ChangeSetName": "devops-master-change-set"
+                        }, 
+                        "runOrder": 2
+                    }
+                ]
+            }
+        ], 
+        "artifactStore": {
+            "type": "S3", 
+            "location": "codepipeline-us-east-1-261851842501"
+        }, 
+        "name": "devops-master", 
+        "version": 4
+    }
+}
