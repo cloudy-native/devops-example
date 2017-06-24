@@ -301,6 +301,23 @@
 			</section>
 
 			<section>
+				<h2>Different ways to run the same code</h2>
+				<ol>
+					<li>Spring Boot application that runs in an IDE or on command line</li>
+					<li>Docker image that runs anywhere</li>
+					<li>AWS Lambda (Serverless)</li>
+				</ol>
+			</section>
+
+			<section>
+				<h2>Show Spring Boot Standalone</h2>
+			</section>
+
+			<section>
+				<h2>Show Spring Boot Docker</h2>
+			</section>
+
+			<section>
 				<h2>Amazon Web Services (AWS) Review</h2>
 				<ul>
 					<li><em>API Gateway</em> is exactly what you think it is</li>
@@ -308,10 +325,12 @@
 					<ul>
 						<li>Integrates with API Gateway</li>
 						<li>Can run at huge scale</li>
+						<li>Wants to be stateless and ephemeral</li>
 					</ul>
 					<li><em>AWS CloudFormation</em> defines infrastructure-as-code</li>
 					<ul>
-						<li>More on this later</li>
+						<li>See https://github.com/awslabs/serverless-application-model</li>
+						<li>Show our sam.yaml</li>
 					</ul>
 				</ul>
 			</section>
@@ -320,7 +339,7 @@
 				<h2>The Stack in AWS</h2>
 				<ul>
 					<li>Fully <em>serverless</em> meaning no classic server instances</li>
-					<li>But still runs on computers we don't own and can't see</li>
+					<li>But still runs on computers: just ones we don't own and can't see</li>
 				</ul>
 				<div style="height:500px">
 					<img src="./images/stack.svg">
@@ -328,22 +347,12 @@
 			</section>
 
 			<section>
-				<h2>Review Stack in AWS Console</h2>
-			</section>
-			<section>
-				<h2>Codepipeline + Codebuild</h2>
+				<h2>Deploy to AWS</h2>
 				<ul>
-					<li>GitHub integration</li>
-					<li>...</li>
+					<li>Package</li>
+					<li>Deploy</li>
+					<li>Invoke</li>
 				</ul>
-			</section>
-
-			<section>
-				<h2>Kick off a build</h2>
-			</section>
-
-			<section>
-				<h2>Gitflow?</h2>
 			</section>
 
 			<section>
