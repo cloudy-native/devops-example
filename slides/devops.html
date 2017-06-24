@@ -1,168 +1,390 @@
 <!doctype html>
 <html lang="en">
 
-	<head>
-		<meta charset="utf-8">
+<head>
+	<meta charset="utf-8">
 
-		<title>Introduction to DevOps</title>
+	<title>Introduction to DevOps</title>
 
-		<meta name="description" content="Introduction to DevOps">
-		<meta name="author" content="Stephen Harrison">
+	<meta name="description" content="Introduction to DevOps">
+	<meta name="author" content="Stephen Harrison">
 
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/night.css" id="theme">
+	<link rel="stylesheet" href="css/reveal.css">
+	<link rel="stylesheet" href="css/theme/stephen.css" id="theme">
 
-		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
 
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement('link');
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+		document.getElementsByTagName('head')[0].appendChild(link);
+	</script>
 
-		<!--[if lt IE 9]>
+	<!--[if lt IE 9]>
 		<script src="lib/js/html5shiv.js"></script>
 		<![endif]-->
-	</head>
+</head>
 
-	<body>
+<body>
 
-		<div class="reveal">
-			<div class="slides">
-				<section>
-					<h1>DevOps</h1>
-					<h3>Is Dev. Also Ops.</h3>
-				</section>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h1>DevOps</h1>
+				<h3>Is Dev</h3>
+				<h3>Also Ops</h3>
+				<h3>Let's explain</h3>
+				<br/>
+				<h4><code>stephen@harrison.org</code></h4>
+			</section>
 
-				<section>
-					<h2>Today's Plan</h2>
+			<section>
+				<h2>The Plan Today</h2>
+				<ul>
+					<li>How we got here</li>
+					<li>Identify challenges</li>
+					<li>Modern thinking</li>
+					<li>Tools of the trade</li>
+					<li>Demo and workshop</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Brief History</h2>
+				<ul>
+					<li>Software release cycles often measured in years</li>
 					<ul>
-						<li>How we got here</li>
-						<li>Identify challenges</li>
-						<li>Modern thinking</li>
-						<li>Tools of the trade</li>
-						<li>Demo</li>
+						<li>Detailed specifications approved before development starts</li>
+						<li>Called &ldquo;Waterfall&rdquo; Software Development Life Cycle</li>
 					</ul>
-				</section>
-
-				<section>
-					<h2>Brief History</h2>
+					<li>Running applications required specialized hardware, operating systems</li>
 					<ul>
-						<li>Software release cycles often measured in years</li>
-						<ul>
-							<li>Detailed specifications for software written and approved before development starts</li>
-							<li>Called &ldquo;Waterfall&rdquo; Software Development Life Cycle</li>
-						</ul>
-						<li>Running applications required specialized hardware, operating systems</li>
-						<ul>
-							<li>Operations, network, database, security, testing skills also specialized</li>
-						</ul>
+						<li>Operations, network, database, security, testing skills also specialized</li>
 					</ul>
-				</section>
+				</ul>
+			</section>
 
-				<section>
-					<h2>Challenges</h2>
+			<section>
+				<h2>Challenges</h2>
+				<ul>
+					<li>Releases were huge and hard to test, fix, operate</li>
 					<ul>
-						<li>Releases were huge and hard to plan, test</li>
 						<li>Waterfall SDLC makes changes hard</li>
 						<li>Monolithic software makes testing hard</li>
-						<li>Technical Leads and Architects lay out solutions before code is written</li>
-						<ul>
-							<li>Often excludes key learnings from on-going development and stiffles developer creativity</li>
-						</ul>
-						<li>"Hand-off" from Lead &rarr; Developer &rarr; Tester &rarr; Release Engineer &rarr; Operations</li>
-						<ul>
-							<li>Can leave big gaps</li>
-						</ul>
 					</ul>
-				</section>
-
-				<section>
-					<h2>Modern Thinking</h2>
-					<h4>Confluence of advances</h4>
+					<li>Technical Leads and Architects lay out solutions before <em>any</em> code is written</li>
+					<li>Excludes key learnings from <em>every</em> stage</li>
 					<ul>
-						<li>Smaller, incremental releases foster agility</li>
-						<li>Commodity server hardware, often in the cloud</li>
-						<li>Skills and responsibilities not so siloed</li>
-						<li>Component approach decouples services</li>
-						<ul>
-							<li><em>Microservice</em> is set of related functionality with its own isolated datastore</li>
-							<li>Very likely a RESTful API with JSON</li>
-						</ul>
-						<li>Containers (Docker)</li>
-						<li>Platform-as-a-Service (AWS, Azure, Google) runs Docker containers at scale</li>
+						<li>Insights often critical to success of project</li>
+						<li>False assumption that upstream is always correct</li>
 					</ul>
-				</section>
+				</ul>
+			</section>
 
-				<section id="transitions">
-					<h2>Transition Styles</h2>
-					<p>
-						You can select from different transitions, like: <br>
-						<a href="?transition=none#/transitions">None</a> -
-						<a href="?transition=fade#/transitions">Fade</a> -
-						<a href="?transition=slide#/transitions">Slide</a> -
-						<a href="?transition=convex#/transitions">Convex</a> -
-						<a href="?transition=concave#/transitions">Concave</a> -
-						<a href="?transition=zoom#/transitions">Zoom</a>
-					</p>
-				</section>
+			<section>
+				<h2>Challenges, 2</h2>
+				<ul>
+					<li>Hand-off</li>
+					<ul>
+						<li>Lead &rarr; Developer &rarr; Tester &rarr; Release Engineer &rarr; Operations</li>
+						<li>Leaves gaps</li>
+					</ul>
+					<li>Does not require any one person to have the whole thing in their head</li>
+					<ul>
+						<li>Think solving a crossword by weekly conference call</li>
+						<li>Or another example that's better than that</li>
+					</ul>
+				</ul>
+			</section>
 
-				<section id="themes">
-					<h2>Themes</h2>
-					<p>
-						reveal.js comes with a few themes built in: <br>
-						<!-- Hacks to swap themes after the page has loaded. Not flexible and only intended for the reveal.js demo deck. -->
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/black.css'); return false;">Black (default)</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/white.css'); return false;">White</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/league.css'); return false;">League</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/sky.css'); return false;">Sky</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/beige.css'); return false;">Beige</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/simple.css'); return false;">Simple</a> <br>
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/serif.css'); return false;">Serif</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/blood.css'); return false;">Blood</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/night.css'); return false;">Night</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/moon.css'); return false;">Moon</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/solarized.css'); return false;">Solarized</a>
-					</p>
-				</section>
-			</div>
+			<section>
+				<h2>Modern Thinking</h2>
+				<h4>Confluence of Advances</h4>
+				<ul>
+					<li>Smaller, incremental releases foster agility</li>
+					<ul>
+						<li>Include explicit feedback</li>
+					</ul>
+					<li>Commodity server hardware, often in the cloud</li>
+					<li>Skills and responsibilities not so siloed</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Modern Thinking, 2</h2>
+				<ul>
+					<li>Component approach decouples services</li>
+					<ul>
+						<li><em>Microservice</em> is set of related functionality with its own isolated datastore</li>
+						<li>Very likely a RESTful API with JSON</li>
+					</ul>
+					<li>Containers (Docker) for encapsulation and fast deployment—ideal for microservices</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Modern Thinking, 3</h2>
+				<ul>
+					<li>Platform-as-a-Service (PaaS)</li>
+					<ul>
+						<li>Amazon Web Services (AWS), Azure, Google</li>
+						<li>Can run Docker containers at any scale</li>
+						<li>Provide other infrastructure like databases</li>
+					</ul>
+				</ul>
+			</section>
+
+			<section>
+				<h2>A Concrete Example</h2>
+				<ul>
+					<li>Let's look at an example microservice</li>
+					<ul>
+						<li>Delivers personalization data from Data Science</li>
+						<li>RESTful API with JSON</li>
+					</ul>
+					<li>Desirable properties</li>
+					<ul>
+						<li>Stateless</li>
+						<li>Synchronous</li>
+						<li>Transactional</li>
+					</ul>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Brand Recommendation API</h2>
+				<table>
+					<thead>
+						<tr>
+							<th>Resource</th>
+							<th>Does this</th>
+						</tr>
+						<tbody>
+							<tr>
+								<td><small><code>/brand/<mark>{brandId}</mark>/similar</code></small></td>
+								<td>For a given <code><mark>brandId</mark></code> show similar brand ids</td>
+							</tr>
+							<tr>
+								<td><small><code>/brand/<mark>{memberId}</mark>/recommendation</code></small></td>
+								<td>For a given <code><mark>memberId</mark></code> show recommended brand ids</td>
+							</tr>
+						</tbody>
+				</table>
+			</section>
+
+			<section>
+				<h2>API Architecture</h2>
+				<div style="height:500px">
+					<img src="./images/tiers.svg">
+				</div>
+			</section>
+
+			<section>
+				<h2>Clear Responsibilities</h2>
+				<h4><em>Separation of Concerns</em></h4>
+				<table>
+					<thead>
+						<tr>
+							<th>Tier</th>
+							<th>Inputs</th>
+							<th>Knows About</th>
+						</tr>
+						<tbody>
+							<tr>
+								<td>API</td>
+								<td>HTTP</td>
+								<td>Dispatcher directs traffic</td>
+							</tr>
+							<tr>
+								<td>Dispatcher</td>
+								<td>Web request</td>
+								<td>API Controller to parse requests</td>
+							</tr>
+							<tr>
+								<td>Controller</td>
+								<td>Request context</td>
+								<td>Service to execute logic</td>
+							</tr>
+							<tr>
+								<td>Service</td>
+								<td>Java types</td>
+								<td>Java code and data store</td>
+							</tr>
+						</tbody>
+				</table>
+			</section>
+
+			<section>
+				<h2>API Gateway</h2>
+				<ul>
+					<li>Is managed infrastructure</li>
+					<li>Can do SSL termination</li>
+					<li>Can implement security</li>
+					<li>Can do throttling</li>
+				</ul>
+				<div style="height:500px">
+					<img src="./images/api-gateway.svg">
+				</div>
+			</section>
+
+			<section>
+				<h2>Dispatcher</h2>
+				<ul>
+					<li>Is a runtime like Spring</li>
+					<li>Binds URL paths to code</li>
+					<li>Deals with declared URL parameters</li>
+				</ul>
+				<div style="height:500px">
+					<img src="./images/dispatcher.svg">
+				</div>
+			</section>
+
+			<section>
+				<h2>Controller</h2>
+				<ul>
+					<li>Accepts dispatched request</li>
+					<li>Translates parameters to native values</li>
+					<li>Calls service</li>
+				</ul>
+				<div style="height:500px">
+					<img src="./images/controller.svg">
+				</div>
+			</section>
+
+			<section>
+				<h2>Service</h2>
+				<ul>
+					<li>Coordinates database calls</li>
+					<li>Manages transactions</li>
+				</ul>
+				<div style="height:500px">
+					<img src="./images/service.svg">
+				</div>
+			</section>
+
+			<section>
+				<h2>Let's Build and Deploy!</h2>
+				<ul>
+					<li>Write the code</li>
+					<li>Make a build</li>
+					<li>Test the code</li>
+					<li>Define stack</li>
+					<li>Deploy the stack</li>
+					<li>Test the stack</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Show me the Code</h2>
+				<p><small><code>https://github.com/NogbadTheBad/devops-example</code></small></p>
+				<ul>
+					<li>Code for Dispatcher (Spring Java)</li>
+					<li>Code for Controller (Spring MVC, Java)</li>
+					<li>Code for Service (Java)</li>
+					<li>Infrastructure-as-code stack (Cloudformation YAML)</li>
+					<li>These slides (hint: open <code>devops.html</code> and press spacebar)</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Java Code Walkthrough</h2>
+				<h4>In GitHub</h4>
+			</section>
+
+			<section>
+				<h2>Different ways to run the same code</h2>
+				<ol>
+					<li>Spring Boot application that runs in an IDE or on command line</li>
+					<li>Docker image that runs anywhere</li>
+					<li>AWS Lambda (Serverless)</li>
+				</ol>
+			</section>
+
+			<section>
+				<h2>Show Spring Boot Standalone</h2>
+			</section>
+
+			<section>
+				<h2>Show Spring Boot Docker</h2>
+			</section>
+
+			<section>
+				<h2>Amazon Web Services (AWS) Review</h2>
+				<ul>
+					<li><em>API Gateway</em> is exactly what you think it is</li>
+					<li><em>AWS Lambda</em> is a fragment of code</li>
+					<ul>
+						<li>Integrates with API Gateway</li>
+						<li>Can run at huge scale</li>
+						<li>Wants to be stateless and ephemeral</li>
+					</ul>
+					<li><em>AWS CloudFormation</em> defines infrastructure-as-code</li>
+					<ul>
+						<li>See https://github.com/awslabs/serverless-application-model</li>
+						<li>Show our sam.yaml</li>
+					</ul>
+				</ul>
+			</section>
+
+			<section>
+				<h2>The Stack in AWS</h2>
+				<ul>
+					<li>Fully <em>serverless</em> meaning no classic server instances</li>
+					<li>But still runs on computers: just ones we don't own and can't see</li>
+				</ul>
+				<div style="height:500px">
+					<img src="./images/stack.svg">
+				</div>
+			</section>
+
+			<section>
+				<h2>Deploy to AWS</h2>
+				<ul>
+					<li>Package</li>
+					<li>Deploy</li>
+					<li>Invoke</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Review</h2>
+			</section>
 		</div>
+	</div>
+	<script src="lib/js/head.min.js"></script>
+	<script src="js/reveal.js"></script>
 
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.js"></script>
+	<script>
+		// More info https://github.com/hakimel/reveal.js#configuration
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			history: true,
+			center: true,
 
-		<script>
+			transition: 'slide', // none/fade/slide/convex/concave/zoom
 
-			// More info https://github.com/hakimel/reveal.js#configuration
-			Reveal.initialize({
-				controls: true,
-				progress: true,
-				history: true,
-				center: true,
+			// More info https://github.com/hakimel/reveal.js#dependencies
+			dependencies: [
+				{ src: 'lib/js/classList.js', condition: function () { return !document.body.classList; } },
+				{ src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+				{ src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+				{ src: 'plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } },
+				{ src: 'plugin/zoom-js/zoom.js', async: true },
+				{ src: 'plugin/notes/notes.js', async: true }
+			]
+		});
+	</script>
 
-				transition: 'slide', // none/fade/slide/convex/concave/zoom
+</body>
 
-				// More info https://github.com/hakimel/reveal.js#dependencies
-				dependencies: [
-					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
-					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-					{ src: 'plugin/zoom-js/zoom.js', async: true },
-					{ src: 'plugin/notes/notes.js', async: true }
-				]
-			});
-
-		</script>
-
-	</body>
 </html>

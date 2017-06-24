@@ -1,0 +1,19 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: SAM script for the DevOps example
+Resources:
+  PersonalizationFunction:
+    Properties:
+      CodeUri: s3://ruetech-deploy/a37cd1a314e1b78b6dfea5437c8bd4ec
+      Events:
+        GetResource:
+          Properties:
+            Method: any
+            Path: /{proxy+}
+          Type: Api
+      Handler: org.harrison.devops.LambdaHandler::handleRequest
+      MemorySize: 512
+      Policies: AWSLambdaBasicExecutionRole
+      Runtime: java8
+      Timeout: 20
+    Type: AWS::Serverless::Function
+Transform: AWS::Serverless-2016-10-31
