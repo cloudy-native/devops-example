@@ -35,7 +35,6 @@
 </head>
 
 <body>
-
 	<div class="reveal">
 		<div class="slides">
 			<section>
@@ -67,9 +66,7 @@
 						<li>Called &ldquo;Waterfall&rdquo; Software Development Life Cycle</li>
 					</ul>
 					<li>Running applications required specialized hardware, operating systems</li>
-					<ul>
-						<li>Operations, network, database, security, testing skills also specialized</li>
-					</ul>
+					<li>Skills also specialized: operations, network, database, security, testing</li>
 				</ul>
 			</section>
 
@@ -82,7 +79,7 @@
 						<li>Monolithic software makes testing hard</li>
 					</ul>
 					<li>Technical Leads and Architects lay out solutions before <em>any</em> code is written</li>
-					<li>Excludes key learnings from <em>every</em> stage</li>
+					<li>Key learnings from participants generally not shared</li>
 					<ul>
 						<li>Insights often critical to success of project</li>
 						<li>False assumption that upstream is always correct</li>
@@ -95,13 +92,15 @@
 				<ul>
 					<li>Hand-off</li>
 					<ul>
-						<li>Lead &rarr; Developer &rarr; Tester &rarr; Release Engineer &rarr; Operations</li>
+						<li>Business &rarr; Analyst &rarr; Architect &rarr; Lead &rarr; Developer &rarr; Tester &rarr; Release Engineer &rarr;
+							Operations
+						</li>
 						<li>Leaves gaps</li>
 					</ul>
 					<li>Does not require any one person to have the whole thing in their head</li>
 					<ul>
 						<li>Think solving a crossword by weekly conference call</li>
-						<li>Or another example that's better than that</li>
+						<li>Or another example that explains it better</li>
 					</ul>
 				</ul>
 			</section>
@@ -112,10 +111,16 @@
 				<ul>
 					<li>Smaller, incremental releases foster agility</li>
 					<ul>
-						<li>Include explicit feedback</li>
+						<li>Ideas shared</li>
+						<li>Changes incorporated</li>
+						<li>Always check what's being built</li>
+						<li>Gaps avoided</li>
 					</ul>
 					<li>Commodity server hardware, often in the cloud</li>
 					<li>Skills and responsibilities not so siloed</li>
+					<ul>
+						<li>But specializations often still appropriate</li>
+					</ul>
 				</ul>
 			</section>
 
@@ -124,21 +129,31 @@
 				<ul>
 					<li>Component approach decouples services</li>
 					<ul>
-						<li><em>Microservice</em> is set of related functionality with its own isolated datastore</li>
+						<li><em>Microservice</em> is related functionality with an isolated datastore</li>
 						<li>Very likely a RESTful API with JSON</li>
 					</ul>
-					<li>Containers (Docker) for encapsulation and fast deployment—ideal for microservices</li>
+					<li>Prominence of containers (Docker)</li>
+					<ul>
+						<li>For encapsulation and fast deployment</li>
+						<li>Ideal for microservices</li>
+					</ul>
+
 				</ul>
 			</section>
 
 			<section>
 				<h2>Modern Thinking, 3</h2>
 				<ul>
-					<li>Platform-as-a-Service (PaaS)</li>
+					<li>Platform-as-a-Service (PaaS) Providers</li>
 					<ul>
 						<li>Amazon Web Services (AWS), Azure, Google</li>
 						<li>Can run Docker containers at any scale</li>
 						<li>Provide other infrastructure like databases</li>
+					</ul>
+					<li>AWS key differentiator is managed services</li>
+					<ul>
+						<li>Managed Docker clusters, <em>ECS</em></li>
+						<li>Scalable key/value store, <em>DynamoDB</em></li>
 					</ul>
 				</ul>
 			</section>
@@ -146,10 +161,11 @@
 			<section>
 				<h2>A Concrete Example</h2>
 				<ul>
-					<li>Let's look at an example microservice</li>
+					<li>RESTful API with JSON</li>
 					<ul>
 						<li>Delivers personalization data from Data Science</li>
-						<li>RESTful API with JSON</li>
+						<li><code>memberId</code> &rarr; brand recommendations</li>
+						<li><code>memberId</code> &rarr; product recommendations</li>
 					</ul>
 					<li>Desirable properties</li>
 					<ul>
@@ -161,24 +177,39 @@
 			</section>
 
 			<section>
-				<h2>Brand Recommendation API</h2>
+				<h2>Member Personalization API</h2>
 				<table>
 					<thead>
 						<tr>
 							<th>Resource</th>
 							<th>Does this</th>
 						</tr>
-						<tbody>
-							<tr>
-								<td><small><code>/brand/<mark>{brandId}</mark>/similar</code></small></td>
-								<td>For a given <code><mark>brandId</mark></code> show similar brand ids</td>
-							</tr>
-							<tr>
-								<td><small><code>/brand/<mark>{memberId}</mark>/recommendation</code></small></td>
-								<td>For a given <code><mark>memberId</mark></code> show recommended brand ids</td>
-							</tr>
-						</tbody>
+					</thead>
+					<tbody style="font-size: 80%">
+						<tr>
+							<td><code>/member/<mark>{memberId}</mark>/brands</code></td>
+							<td>For a given <code><mark>memberId</mark></code> show recommended brand ids</td>
+						</tr>
+						<tr>
+							<td><code>/member/<mark>{memberId}</mark>/products</code></td>
+							<td>For a given <code><mark>memberId</mark></code> show recommended product ids</td>
+						</tr>
+					</tbody>
 				</table>
+			</section>
+
+			<section>
+				<h2>Return Values are Structures</h2>
+				<pre><code class="hljs" data-trim contenteditable>[
+  {
+    "brandId": "brand-282mt2",
+    "score": 0.61420393
+  },
+  {
+    "brandId": "brand-5cs4jv",
+    "score": 0.8265825
+  }
+]</code></pre>
 			</section>
 
 			<section>
@@ -198,7 +229,7 @@
 							<th>Inputs</th>
 							<th>Knows About</th>
 						</tr>
-						<tbody>
+						<tbody style="font-size: 80%">
 							<tr>
 								<td>API</td>
 								<td>HTTP</td>
