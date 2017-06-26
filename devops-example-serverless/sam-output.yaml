@@ -3,7 +3,7 @@ Description: SAM script for the DevOps example
 Resources:
   PersonalizationFunction:
     Properties:
-      CodeUri: s3://ruetech-deploy/a37cd1a314e1b78b6dfea5437c8bd4ec
+      CodeUri: s3://ruetech-deploy/09ed1fa34378c18358511bbb909ba48d
       Events:
         GetResource:
           Properties:

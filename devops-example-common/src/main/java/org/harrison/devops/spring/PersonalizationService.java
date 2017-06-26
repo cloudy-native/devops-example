@@ -31,7 +31,7 @@ public class PersonalizationService {
 	 * @return
 	 */
 	public List<ScoredProductRecommendation> memberProducts(final String memberId) {
-		return RandomUtil.randomData(RandomUtil.random("products" + memberId), 2, 10, this::randomProduct);
+		return RandomUtil.randomData(RandomUtil.random("products" + memberId), 3, 5, this::randomProduct);
 	}
 
 	private ScoredProductRecommendation randomProduct(final Random random) {

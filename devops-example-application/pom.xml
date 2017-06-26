@@ -12,7 +12,7 @@
     <artifactId>devops-example-application</artifactId>
 
     <properties>
-        <docker.image.name>stephen/${project.artifactId}</docker.image.name>
+        <docker.image.name>${user.name}/${project.artifactId}</docker.image.name>
         <docker.image.tag>${project.version}</docker.image.tag>
     </properties>
 

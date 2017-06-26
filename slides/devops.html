@@ -63,7 +63,7 @@
 					<li>Software release cycles often measured in years</li>
 					<ul>
 						<li>Detailed specifications approved before development starts</li>
-						<li>Called &ldquo;Waterfall&rdquo; Software Development Life Cycle</li>
+						<li>&ldquo;Waterfall&rdquo; Software Development Life Cycle</li>
 					</ul>
 					<li>Running applications required specialized hardware, operating systems</li>
 					<li>Skills also specialized: operations, network, database, security, testing</li>
@@ -154,6 +154,7 @@
 					<ul>
 						<li>Managed Docker clusters, <em>ECS</em></li>
 						<li>Scalable key/value store, <em>DynamoDB</em></li>
+						<li>And tons more</li>
 					</ul>
 				</ul>
 			</section>
@@ -258,7 +259,6 @@
 				<h2>API Gateway</h2>
 				<ul>
 					<li>Is managed infrastructure</li>
-					<li>Can do SSL termination</li>
 					<li>Can implement security</li>
 					<li>Can do throttling</li>
 				</ul>
@@ -332,7 +332,7 @@
 			</section>
 
 			<section>
-				<h2>Different ways to run the same code</h2>
+				<h2>Different ways to run same code</h2>
 				<ol>
 					<li>Spring Boot application that runs in an IDE or on command line</li>
 					<li>Docker image that runs anywhere</li>
@@ -341,17 +341,17 @@
 			</section>
 
 			<section>
-				<h2>Show Spring Boot Standalone</h2>
+				<h2>Demo: Spring Boot Standalone</h2>
 			</section>
 
 			<section>
-				<h2>Show Spring Boot Docker</h2>
+				<h2>Demo: Spring Boot Docker</h2>
 			</section>
 
 			<section>
 				<h2>Amazon Web Services (AWS) Review</h2>
 				<ul>
-					<li><em>API Gateway</em> is exactly what you think it is</li>
+					<li><em>API Gateway</em> gets the URLs</li>
 					<li><em>AWS Lambda</em> is a fragment of code</li>
 					<ul>
 						<li>Integrates with API Gateway</li>
@@ -361,7 +361,7 @@
 					<li><em>AWS CloudFormation</em> defines infrastructure-as-code</li>
 					<ul>
 						<li>See https://github.com/awslabs/serverless-application-model</li>
-						<li>Show our sam.yaml</li>
+						<li>Show our <code>sam.yaml</code></li>
 					</ul>
 				</ul>
 			</section>
@@ -378,7 +378,7 @@
 			</section>
 
 			<section>
-				<h2>Deploy to AWS</h2>
+				<h2>Demo: Deploy to AWS</h2>
 				<ul>
 					<li>Package</li>
 					<li>Deploy</li>
@@ -387,10 +387,75 @@
 			</section>
 
 			<section>
-				<h2>Review</h2>
+				<h2>Development Process</h2>
+				<ul>
+					<li>Git is modern source code control and highly leverageable</li>
+					<li>Huge companies like Google develop directly on HEAD (trunk)</li>
+					<ul>
+						<li>Alternatives include <em>GitFlow</em></li>
+					</ul>
+				</ul>
 			</section>
+
+			<section>
+				<h2>How to Develop on <code>master</code></h2>
+				<ul>
+					<li>Everything is tested and working</li>
+					<ul>
+						<li>So your code will not fail even if it's incomplete</li>
+					</ul>
+					<li>Can deploy using <em>feature flags</em></li>
+					<ul>
+						<li>Enable/disable features at will</li>
+						<li>Often deploy initial code with feature disabled</li>
+					</ul>
+				</ul>
+			</section>
+
+			<section>
+				<h2>How to Deploy from <code>master</code></h2>
+				<ul>
+					<li><em>Canary</em> releases to small subset of population</li>
+					<ul>
+						<li>Validate new code on the subset</li>
+						<li>Then increase deployment until it's everywhere</li>
+						<li>Can roll back easily and quickly</li>
+					</ul>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Make Deployments 100% Repeatable</h2>
+				<ul>
+					<li>Script all the things (Puppet, Chef, AWS Cloudformation, Ansible, Terraform)</li>
+					<li>Parameterize everything and scope all resources to each deployment</li>
+					<li>&ldquo;Same-version&rdquo; redeploys are idempotent</li>
+					<ul>
+						<li>Ideally with no service interruption</li>
+					</ul>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Review</h2>
+				<ol>
+					<li>Agile means</li>
+					<ul>
+						<li>Smaller features</li>
+						<li>Delivered quicker</li>
+						<li>With on-going feedback</li>
+					</ul>
+					<li>You can run the same code multiple ways</li>
+					<ul>
+						<li>With a bit of care</li>
+					</ul>
+					<li>Deployment is repeatable and idempotent</li>
+				</ol>
+			</section>
+
 		</div>
 	</div>
+
 	<script src="lib/js/head.min.js"></script>
 	<script src="js/reveal.js"></script>
 
@@ -401,6 +466,7 @@
 			progress: true,
 			history: true,
 			center: true,
+			slideNumber: 'c/t',
 
 			transition: 'slide', // none/fade/slide/convex/concave/zoom
 

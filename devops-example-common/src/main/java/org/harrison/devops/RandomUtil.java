@@ -3,6 +3,7 @@ package org.harrison.devops;
 import static java.util.stream.Collectors.toList;
 
 import java.math.BigInteger;
+import java.security.SecureRandom;
 import java.util.List;
 import java.util.Random;
 import java.util.function.Function;
@@ -27,7 +28,7 @@ public final class RandomUtil {
 	}
 
 	public static Random random(final String text) {
-		return new Random(new BigInteger(text.getBytes()).longValue());
+		return new SecureRandom(text.getBytes());
 	}
 
 }
