@@ -1,4 +1,4 @@
-# devops-example
+# Teaching Harvard Extension DevOps
 
 An end-to-end DevOps example. 
 
